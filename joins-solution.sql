@@ -33,5 +33,9 @@ SELECT SUM("warehouse_product"."on_hand") FROM "warehouse_product" JOIN "product
 WHERE "products"."description" LIKE 'diet pepsi'; 
 
 --9. (Stretch) How much was the total cost for each order?
+SELECT "orders"."id", SUM ("products"."unit_price" * "line_items"."quantity") FROM "line_items" JOIN "products" ON "line_items"."product_id" = "products"."id"
+JOIN "orders" ON "orders"."id" = "line_items"."order_id"
+GROUP BY "orders"."id";
+
 --10. (Stretch) How much has each customer spent in total?
 --11. (Stretch) How much has each customer spent in total? Customers who have spent $0 should still show up in the table. It should say 0, not NULL (research coalesce).
